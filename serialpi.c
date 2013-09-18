@@ -26,5 +26,4 @@ void main(int argc, char* argv[])
 	}			
 	pi = ((double)count/(double)niter)*4.0;				//p = 4(m/n)
 	printf("Pi: %f\n", pi);			
-	MPI_Finalize();
 }
