@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -A AAA123
+#PBS -N monte_carlo_pi
+#PBS -j oe
+#PBS -l walltime=0:01:00,nodes=4
+#PBS -l gres=widow2%widow3
+
+cd /tmp/work/$USER
+
+date
+aprun -n4 -N1 ./mpi.out
