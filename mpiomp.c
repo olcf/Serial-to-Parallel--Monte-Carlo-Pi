@@ -26,11 +26,7 @@ int main(int argc, char* argv[])
 		//Start OpenMP code: 16 threads/node
 		#pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(16)
 		{
-			/*random() was used here because it is supposed to give a more random/cryptographically
-				 * better random number so that it increases the randomness of the points which should 
-			 * increase the accuacy of the result by at least a small degree*/
-
-			srand48((int)time(NULL) ^ omp_get_thread_num());	//Give random() a seed value
+			srand48((int)time(NULL) ^ omp_get_thread_num());	//Give drand48() a seed value
 			for (i=0; i<niter; ++i)				//main loop
 			{
 				x = (double)drand48();//RAND_MAX;		//gets a random x coordinate
