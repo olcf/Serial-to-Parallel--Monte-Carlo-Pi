@@ -47,3 +47,5 @@ Wed Sep 18 11:02:27 EDT 2013
 Pi: 3.140800
 Application 3587838 resources: utime ~0s, stime ~0s, Rss ~3444, inblocks ~4534, outblocks ~11970
 ```
+
+The tutorial from which this code is from can be found on the OLCF website at: https://www.olcf.ornl.gov/tutorials/monte-carlo-pi/
