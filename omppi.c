@@ -10,8 +10,9 @@ int main(int argc, char* argv[])
         int count=0;						//Count holds all the number of how many good coordinates
 	double z;						//Used to check if x^2+y^2<=1
 	double pi;						//holds approx value of pi
+	int numthreads = 16
 
-	#pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(16)
+	#pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(numthreads)
 	{
 		srand48((int)time(NULL) ^ omp_get_thread_num());	//Give random() a seed value
 		for (i=0; i<niter; ++i)				//main loop
@@ -25,7 +26,7 @@ int main(int argc, char* argv[])
 			}	
 		}
 	} 
-	pi = ((double)count/(double)(niter*16))*4.0;
+	pi = ((double)count/(double)(niter*numthreads))*4.0;
 	printf("Pi: %f\n", pi);
 	return 0;
 }
