@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
 	int reducedcount;					//total number of "good" points from all nodes
 	int reducedniter;					//total number of ALL points from all nodes
 	int ranknum = 0;					//total number of nodes available
+	int numthreads = 16					//edit this number to change the number of OpenMP threads launched per MPI task
 	MPI_Init(&argc, &argv);					//Start MPI
 	MPI_Comm_rank(MPI_COMM_WORLD, &myid);			//get rank of node's process
 	MPI_Comm_size(MPI_COMM_WORLD, &ranknum);		//Gets number of nodes availible to process
@@ -24,7 +25,7 @@ int main(int argc, char* argv[])
 	if(myid != 0)						//Do the following on all except the master node
 	{
 		//Start OpenMP code: 16 threads/node
-		#pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(16)
+		#pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(numthreads)
 		{
 			srand48((int)time(NULL) ^ omp_get_thread_num());	//Give drand48() a seed value
 			for (i=0; i<niter; ++i)				//main loop
@@ -54,7 +55,7 @@ int main(int argc, char* argv[])
 	 * calculate it without using an MPI routine like above. 
 	 * 16 threads with niter iterations each on (the number of nodes - the master node) nodes */
 
-	reducedniter = 16*niter*(ranknum-1);					
+	reducedniter = numthreads*niter*(ranknum-1);					
 	MPI_Barrier(MPI_COMM_WORLD);
 	if (myid == 0)						//if root process/master node
 	{
