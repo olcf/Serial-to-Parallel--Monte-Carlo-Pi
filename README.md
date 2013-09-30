@@ -4,7 +4,7 @@ Serial-to-Parallel--Monte-Carlo-Pi
 This tutorial covers how to write a parallel program to calculate π using the Monte Carlo method with MPI and OpenMP. 
 
 ####Compiling and Running
-To compile any of this code, you will need to edit the submit scripts (submit.pbs and mpisubmit.pbs) and replace AAA123 with the correct project ID. Once done, you need to load the PGI programming environment
+Before you start, you will need to edit the submit scripts (submit.pbs and mpisubmit.pbs) and replace AAA123 with the correct project ID. Once done, you need to load the PGI programming environment
 
 ```
 module load PrgEnv-pgi
