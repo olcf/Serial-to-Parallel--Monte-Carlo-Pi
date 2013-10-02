@@ -14,7 +14,7 @@ To compile and submit the serial version, you need to run: ```make serial```
 
 * For the MPI_Reduce verion: `make mpi`
 * For the MPI Send/Recv verion: `make mpisr`
-* For the OpenMP version: `Make omp`
+* For the OpenMP version: `make omp`
 * For the hybrid OpenMP/MPI version: `make mpiomp`
 
 The output should look something like:
