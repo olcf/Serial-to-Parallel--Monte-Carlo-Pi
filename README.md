@@ -10,35 +10,15 @@ Before you start, you will need to edit the submit scripts (submit.pbs and mpisu
 module load PrgEnv-pgi
 ```
 
-To compile and submit the serial version, you need to run:
+To compile and submit the serial version, you need to run: ```make serial```
 
-```
-make serial
-```
+For the MPI_Reduce verion: ```make mpi```
 
-For the MPI_Reduce verion:
+For the MPI Send/Recv verion: ```make mpisr```
 
-```
-make mpi
-```
+For the OpenMP version: ```Make omp```
 
-For the MPI Send/Recv verion:
-
-```
-make mpisr
-```
-
-For the OpenMP version:
-
-```
-Make omp
-```
-
-For the hybrid OpenMP/MPI version:
-
-```
-make mpiomp
-```
+For the hybrid OpenMP/MPI version: ```make mpiomp```
 
 The output should look something like:
 
