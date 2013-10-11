@@ -28,18 +28,16 @@ int main(int argc, char* argv[])
 		#pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(numthreads)
 		{
 			srand48((int)time(NULL) ^ omp_get_thread_num());	//Give drand48() a seed value
-			for (i=0; i<niter; ++i)				//main loop
+			for (i=0; i<niter; ++i)					//main loop
 			{
-				x = (double)drand48();//RAND_MAX;		//gets a random x coordinate
-				y = (double)drand48();//RAND_MAX;		//gets a random y coordinate
-				z = ((x*x)+(y*y));			//Checks to see if number is inside unit circle
+				x = (double)drand48();				//gets a random x coordinate
+				y = (double)drand48();				//gets a random y coordinate
+				z = ((x*x)+(y*y));				//Checks to see if number is inside unit circle
 				if (z<=1)
 				{
-					++count;			//if it is, consider it a valid random point	
+					++count;				//if it is, consider it a valid random point	
 				}	
 			}
-		
-			//print the value of each thread/rank
 		} 
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
@@ -57,13 +55,13 @@ int main(int argc, char* argv[])
 
 	reducedniter = numthreads*niter*(ranknum-1);					
 	MPI_Barrier(MPI_COMM_WORLD);
-	if (myid == 0)						//if root process/master node
+	if (myid == 0)							//if root process/master node
 	{
 	    	//p = 4(m/n) | Compute the ratio of good hits to bad hits (monte carlo)
 		pi = ((double)reducedcount/(double)reducedniter)*4.0;
 		//Print the calculated value of pi
 		printf("Pi: %f\n", pi);			
 	}
-	MPI_Finalize();						//Close the MPI instance
+	MPI_Finalize();							//Close the MPI instance
 	return 0;
 }
