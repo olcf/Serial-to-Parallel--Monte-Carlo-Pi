@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 		{
 			x = (double)drand48();//(double)RAND_MAX;		//gets a random x coordinate
 			y = (double)drand48();//(double)RAND_MAX;		//gets a random y coordinate
-			z = ((x*x)+(y*y));			//Checks to see if number is inside unit square
+			z = ((x*x)+(y*y));			//Checks to see if number is inside unit circle
 			if (z<=1)
 			{
 				++count;			//if it is, consider it a valid random point	
