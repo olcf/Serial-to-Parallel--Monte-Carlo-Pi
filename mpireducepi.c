@@ -22,14 +22,14 @@ int main(int argc, char* argv[])
 	if(myid != 0)
 	{
 		srand48(time(NULL));				//Give rand() a seed value
-		for (i=0; i<niter; ++i)					//main loop
+		for (i=0; i<niter; ++i)				//main loop
 		{
-			x = (double)drand48();//RAND_MAX;			//gets a random x coordinate
-			y = (double)drand48();//RAND_MAX;			//gets a random y coordinate
-			z = ((x*x)+(y*y));				//Checks to see if number in inside unit circle
+			x = (double)drand48();			//gets a random x coordinate
+			y = (double)drand48();			//gets a random y coordinate
+			z = ((x*x)+(y*y));			//Checks to see if number in inside unit circle
 			if (z<=1)
 			{
-				++count;				//if it is, consider it a valid random point	
+				++count;			//if it is, consider it a valid random point	
 			}	
 		}			
 	}	
@@ -40,7 +40,8 @@ int main(int argc, char* argv[])
 
 	if (myid == 0)						//if root process
 	{      
-		pi = ((double)reducedcount/(double)reducedniter)*4.0;				//p = 4(m/n)
+		//p = 4(m/n)
+		pi = ((double)reducedcount/(double)reducedniter)*4.0;	
 		printf("Pi: %f\n", pi);			
 	}
 	MPI_Finalize();						//Close the MPI instance
