@@ -6,20 +6,20 @@
 
 int main(int argc, char* argv[])
 {
-	long niter = 1000000;
-	int myid;						//hold's process's rank id
-	double x,y;						//x,y value for the random coordinate
-	int i, count=0;						//Count holds all the number of how many good coordinates
-	double z;						//Used to check if x^2+y^2<=1
-	double pi;						//holds approx value of pi
+	long niter = 1000000;			
+	int myid;							//hold's process's rank id
+	double x,y;							//x,y value for the random coordinate
+	int i, count=0;							//Count holds all the number of how many good coordinates
+	double z;							//Used to check if x^2+y^2<=1
+	double pi;							//holds approx value of pi
 	int nodenum;
 
-	MPI_Init(&argc, &argv);					//Start MPI
-	MPI_Comm_rank(MPI_COMM_WORLD, &myid);			//get rank of node's process
+	MPI_Init(&argc, &argv);						//Start MPI
+	MPI_Comm_rank(MPI_COMM_WORLD, &myid);				//get rank of node's process
 	MPI_Comm_size(MPI_COMM_WORLD, &nodenum);
 	int recieved[nodenum];
 	long recvniter[nodenum];
-	srand(SEED);						//Give rand() a seed value
+	srand(SEED);							//Give rand() a seed value
 	
 	if(myid != 0)
 	{
@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 		{
 			x= ((double)rand())/RAND_MAX;			//gets a random x coordinate
 			y =((double)rand())/RAND_MAX;			//gets a random y coordinate
-			z = x*x+y*y;					
+			z = x*x+y*y;					//Checks to see if number in inside unit circle
 			if (z<=1)
 			{
 				count++;				//if it is, consider it a valid random point
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 		}
 	}
 	
-	if (myid == 0)						//if root process
+	if (myid == 0)							//if root process
 	{      
 		int finalcount = 0;
 		long finalniter = 0;
@@ -58,11 +58,11 @@ int main(int argc, char* argv[])
 			finalniter += recvniter[i];
 		}
 
-		pi = ((double)finalcount/(double)finalniter)*4.0;				//p = 4(m/n)
-		printf("Pi: %f\n", pi);				//Print the calculated value of pi
+		pi = ((double)finalcount/(double)finalniter)*4.0;	//p = 4(m/n)
+		printf("Pi: %f\n", pi);					//Print the calculated value of pi
 		
 	}
 
-	MPI_Finalize();						//Close the MPI instance
+	MPI_Finalize();							//Close the MPI instance
 	return 0;
 }
