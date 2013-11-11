@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
         int count=0;							//Count holds all the number of how many good coordinates
 	double z;							//Used to check if x^2+y^2<=1
 	double pi;							//holds approx value of pi
-	int numthreads = 16
+	int numthreads = 16;
 
 	#pragma omp parallel firstprivate(x, y, z, i) reduction(+:count) num_threads(numthreads)
 	{

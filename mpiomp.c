@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 	int reducedcount;					//total number of "good" points from all nodes
 	int reducedniter;					//total number of ALL points from all nodes
 	int ranknum = 0;					//total number of nodes available
-	int numthreads = 16					//edit this number to change the number of OpenMP threads launched per MPI task
+	int numthreads = 16;					//edit this number to change the number of OpenMP threads launched per MPI task
 	MPI_Init(&argc, &argv);					//Start MPI
 	MPI_Comm_rank(MPI_COMM_WORLD, &myid);			//get rank of node's process
 	MPI_Comm_size(MPI_COMM_WORLD, &ranknum);		//Gets number of nodes availible to process
