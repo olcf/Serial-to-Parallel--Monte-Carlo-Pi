@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -A AAA123
+#PBS -A <PROJID>
 #PBS -N monte_carlo_pi
 #PBS -j oe
 #PBS -l walltime=0:01:00,nodes=4
