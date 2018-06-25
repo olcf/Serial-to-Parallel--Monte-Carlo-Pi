@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &nodenum);
 	int recieved[nodenum];
 	long recvniter[nodenum];
-	srand(SEED);							//Give rand() a seed value
+	srand(SEED+myid);							//Give rand() a seed value
 	
 	if(myid != 0)
 	{

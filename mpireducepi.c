@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 
 	if(myid != 0)
 	{
-		srand48(time(NULL));				//Give rand() a seed value
+		srand48(time(NULL)+myid);				//Give rand() a seed value
 		for (i=0; i<niter; ++i)				//main loop
 		{
 			x = (double)drand48();			//gets a random x coordinate
