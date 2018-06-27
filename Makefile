@@ -1,4 +1,5 @@
-all: serial mpi mpisr mpinbsr mpinbreduce omp mpiomp mpiSRnoverp mpireducenoverp
+examples: serial mpi mpisr mpinbsr mpinbreduce omp mpiomp 
+exercises: mpiSRnoverp mpireducenoverp
 serial: serialpi.c
 	cc serialpi.c -o serialpi.out
 
